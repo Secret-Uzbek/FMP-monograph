@@ -1,0 +1,33 @@
+name: Build Living Map
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build map
+        run: |
+          echo "| Узел | Репо | Файл | SHA256 | Цитата |" > Living_Map_v1_0.md
+          echo "|------|------|------|--------|--------|" >> Living_Map_v1_0.md
+          curl -s https://api.github.com/repos/Secret-Uzbek/FMP-monograph/contents \
+          | jq -r '.[] | @base64' \
+          | while read line; do
+              meta=$(echo $line | base64 -d)
+              path=$(echo $meta | jq -r .path)
+              url=$(echo $meta | jq -r .download_url)
+              if [ "$url" != "null" ]; then
+                hash=$(curl -s "$url" | sha256sum | cut -d' ' -f1)
+                quote=$(curl -s "$url" | head -n1 | sed 's/"/\\"/g')
+                echo "| $((++i)) | FMP-monograph | $path | $hash | «$quote» |" >> Living_Map_v1_0.md
+              fi
+            done
+      - name: Commit map
+        run: |
+          git config user.name "Abdurashid A. Abdukarimov"
+          git config user.email "a.a.abdukarimov@tutamail.com"
+          git add Living_Map_v1_0.md
+          git commit -m "Add Living Map v1.0"
+          git push

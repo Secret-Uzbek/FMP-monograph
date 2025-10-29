@@ -1,0 +1,46 @@
+name: Build Living Map – All Repos
+
+on:
+  workflow_dispatch:
+
+jobs:
+  map:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build full map
+        run: |
+          echo "# Nullo-PLT-UCOMM-FMP Living Map v1.0" > Living_Map_v1_0.md
+          echo "| Узел | Репо | Файл | SHA256 | Цитата |" >> Living_Map_v1_0.md
+          echo "|------|------|------|--------|--------|" >> Living_Map_v1_0.md
+          node=0
+          for repo in \
+            "Secret-Uzbek/FMP-monograph" \
+            "Secret-Uzbek/AIUZ-Terra-codex" \
+            "Secret-Uzbek/Theory-of-fractal-metascience-paradigm" \
+            "Secret-Uzbek/AIUZ-terra-codex-FMP" \
+            "Secret-Uzbek/AIUZ-" \
+            "Secret-Uzbek/Uzbek-mining" \
+            "AIUZ-Terra-Codex-EcoSystem/Nullo-PLT-FMP-Theory" \
+            "AIUZ-Terra-Codex-EcoSystem"
+          do
+            curl -s "https://api.github.com/repos/$repo/contents" \
+            | jq -r '.[] | @base64' \
+            | while read line; do
+                meta=$(echo $line | base64 -d)
+                path=$(echo $meta | jq -r .path)
+                url=$(echo $meta | jq -r .download_url)
+                if [ "$url" != "null" ]; then
+                  hash=$(curl -s "$url" | sha256sum | cut -d' ' -f1)
+                  quote=$(curl -s "$url" | head -n1 | sed 's/"/\\"/g')
+                  echo "| $((++node)) | $repo | $path | $hash | «$quote» |" >> Living_Map_v1_0.md
+                fi
+              done
+          done
+      - name: Commit map
+        run: |
+          git config user.name "Abdurashid A. Abdukarimov"
+          git config user.email "a.a.abdukarimov@tutamail.com"
+          git add Living_Map_v1_0.md
+          git commit -m "Add full Living Map v1.0 – all repos"
+          git push
