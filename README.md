@@ -1,3 +1,5 @@
+> **📍 Part of [FMP Central Repository](https://github.com/Secret-Uzbek/FMP-CENTRAL-REPO) — see full ecosystem map**
+
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.14768442.svg)](https://doi.org/10.5281/zenodo.14768442)  
 **Live site:** https://secret-uzbek.github.io/FMP-monograph/The Fractal Metascience Paradigm:
 Toward a Unified Epistemological Framework for 21st Century Science
