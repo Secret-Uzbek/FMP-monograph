@@ -7032,7 +7032,7 @@ The evidence overwhelmingly supports FMP not just as a viable theoretical framew
                 <div class="subtitle">Multilingual Professional | Political & Economic Analyst | Independent Researcher</div>
                 <div class="contact-bar">
                     <div class="contact-item">📞 +998950833850</div>
-                    <div class="contact-item">✉️ a.a.abdukarimovk@tutamail.com</div>
+                    <div class="contact-item">✉️ a.abdukarimov@fractal-metascience.org</div>
                     <div class="contact-item">📍 Tashkent, Uzbekistan</div>
                     <div class="contact-item">🎂 March 22, 1977</div>
                 </div>
@@ -7188,7 +7188,7 @@ The evidence overwhelmingly supports FMP not just as a viable theoretical framew
                     <p style="font-size: 1.2em; margin-bottom: 20px;">
                         Available for consulting, translation, research collaboration, and project management
                     </p>
-                    <button class="cta-button" onclick="window.location.href='mailto:secret.uzbek@tutamail.com'">
+                    <button class="cta-button" onclick="window.location.href='mailto:a.abdukarimov@fractal-metascience.org'">
                         Get in Touch
                     </button>
                 </div>
@@ -7442,7 +7442,7 @@ This approach embodies the fractal, recursive nature of the paradigm itself.
 А что лучше всего? Разве нельзя разом во все направления работать?
 Вы сказали:
 Да конечно. Your arXiv.org account: Sectet.Uzbek
-E-mail: a.a.abdukarimov@tutamail.com	Affiliation: Independent Researcher
+E-mail: a.abdukarimov@fractal-metascience.org	Affiliation: Independent Researcher
 Name: Abdurashid Abdukarimov	URL:
 Default Category: cs.AI	Country: Uzbekistan
 Groups: physics, eess, econ, cs, stat, q-fin, math, and q-bio	Career Status: Post Doc
@@ -7511,7 +7511,7 @@ Cнова руководствуйся тем, что подсказывает �
 **Owner / Author:** Abdurashid Abdukarimov
 
 **Primary contacts & IDs**
-- Email: a.a.abdukarimov@tutamail.com
+- Email: a.abdukarimov@fractal-metascience.org
 - Phone: +998950833850
 - ORCID: https://orcid.org/0009-0000-6394-4912
 - Zotero library: https://www.zotero.org/abdurashid_abdukarimov
@@ -7678,7 +7678,7 @@ _End of mandate. Additions and updates will be appended to this document as prog
 **Owner / Author:** Abdurashid Abdukarimov
 
 **Primary contacts & IDs**
-- Email: a.a.abdukarimov@tutamail.com
+- Email: a.abdukarimov@fractal-metascience.org
 - Phone: +998950833850
 - ORCID: https://orcid.org/0009-0000-6394-4912
 - Zotero library: https://www.zotero.org/abdurashid_abdukarimov
@@ -9105,7 +9105,7 @@ Do you want the author name and affiliation to appear exactly as:
 Abdurashid Abdukarimov
 Independent Researcher, Tashkent, Uzbekistan
 ORCID: 0009-0000-6394-4912
-Email: a.a.abdukarimov@tutamail.com
+Email: a.abdukarimov@fractal-metascience.org
 
 ✅ Confirm this or send any updates (e.g., second affiliation or alternate email).
 Once confirmed — I’ll generate both LaTeX + Word full publication versions immediately.
@@ -9142,7 +9142,7 @@ Author line will read exactly as:
 Abdurashid Abdukarimov
 Independent Researcher, Tashkent, Uzbekistan
 ORCID 0009-0000-6394-4912
-Email a.a.abdukarimov@tutamail.com
+Email a.abdukarimov@fractal-metascience.org
 
 Before rendering, one quick confirmation:
 Would you like me to include the Terra Codex validation section (AIUZ project case study) inside the main paper as Section 5 – Applications,
@@ -10458,7 +10458,7 @@ Do you want the author name and affiliation to appear exactly as:
 Abdurashid Abdukarimov
 Independent Researcher, Tashkent, Uzbekistan
 ORCID: 0009-0000-6394-4912
-Email: a.a.abdukarimov@tutamail.com
+Email: a.abdukarimov@fractal-metascience.org
 
 ✅ Confirm this or send any updates (e.g., second affiliation or alternate email).
 Once confirmed — I’ll generate both LaTeX + Word full publication versions immediately.
@@ -10495,7 +10495,7 @@ Author line will read exactly as:
 Abdurashid Abdukarimov
 Independent Researcher, Tashkent, Uzbekistan
 ORCID 0009-0000-6394-4912
-Email a.a.abdukarimov@tutamail.com
+Email a.abdukarimov@fractal-metascience.org
 
 Before rendering, one quick confirmation:
 Would you like me to include the Terra Codex validation section (AIUZ project case study) inside the main paper as Section 5 – Applications,
