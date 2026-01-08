@@ -8,7 +8,7 @@ Toward a Unified Epistemological Framework for 21st Century Science
 Абдурашид Абдулхамитович Абдукаримов
 (Abdurashid Abdulkhamitovich Abdukarimov)
 Independent Researcher • Tashkent, Uzbekistan
-E-mail: a.a.abdukarimov@tutamail.com
+E-mail: a.abdukarimov@fractal-metascience.org
 ORCID: https://orcid.org/0009-0000-6394-4912
 Date: August 10, 2025
 
@@ -206,7 +206,7 @@ Abdukarimov, A. A. (2024). Living Protocols and Recursive Co-construction: The H
 Абдурашид Абдулхамитович Абдукаримов  
 (Abdurashid Abdulkhamitovich Abdukarimov)  
 Independent Researcher, Tashkent, Uzbekistan  
-E-mail: a.a.abdukarimov@tutamail.com  
+E-mail: a.abdukarimov@fractal-metascience.org  
 ORCID: https://orcid.org/0009-0000-6394-4912
 
 Born in 1977, Tashkent, Uzbekistan, Abdukarimov is a self-taught meta-scientist and developer of the Terra Codex ecosystem, creator of the Fractal Metascience Paradigm (FMP), experienced in multi-lingual knowledge architectures, bio-cognitive prototyping, and human-AI symbiotic research methodologies. All work presented in this monograph was developed independently, operating in “human-AI symbiosis” mode, with no institutional support. Abdukarimov’s research spans education, systemic linguistics, digital ethnology, and biocentric system design.
