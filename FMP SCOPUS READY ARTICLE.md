@@ -1269,7 +1269,7 @@ Do you want the author name and affiliation to appear exactly as:
 Abdurashid Abdukarimov
 Independent Researcher, Tashkent, Uzbekistan
 ORCID: 0009-0000-6394-4912
-Email: a.a.abdukarimov@tutamail.com
+Email: a.abdukarimov@fractal-metascience.org
 
 ✅ Confirm this or send any updates (e.g., second affiliation or alternate email).
 Once confirmed — I’ll generate both LaTeX + Word full publication versions immediately.
@@ -1306,7 +1306,7 @@ Author line will read exactly as:
 Abdurashid Abdukarimov
 Independent Researcher, Tashkent, Uzbekistan
 ORCID 0009-0000-6394-4912
-Email a.a.abdukarimov@tutamail.com
+Email a.abdukarimov@fractal-metascience.org
 
 Before rendering, one quick confirmation:
 Would you like me to include the Terra Codex validation section (AIUZ project case study) inside the main paper as Section 5 – Applications,
