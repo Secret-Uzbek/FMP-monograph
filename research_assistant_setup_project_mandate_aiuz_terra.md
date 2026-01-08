@@ -121,7 +121,7 @@
 
 ## 7. Контакты и метаданные (исполнитель)
 - **Инициатор / Автор материалов:** Абдукаримов Абдурашид Абдулхамитович
-  - E-mail: `a.a.abdukarimov@tutamail.com`
+  - E-mail: `a.abdukarimov@fractal-metascience.org`
   - Телефон: `+998950833850`
   - ORCID: `https://orcid.org/0009-0000-6394-4912`
 
