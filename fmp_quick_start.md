@@ -315,7 +315,7 @@ pdflatex fmp_theory.tex
 
 **Author Profile:**
 - ORCID: https://orcid.org/0009-0000-6394-4912
-- Email: a.a.abdukarimov@tutamail.com
+- Email: a.abdukarimov@fractal-metascience.org
 
 **Submission Platforms:**
 - arXiv: https://arxiv.org/
