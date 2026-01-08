@@ -5,7 +5,7 @@
 **Owner / Author:** Abdurashid Abdukarimov
 
 **Primary contacts & IDs**
-- Email: a.a.abdukarimov@tutamail.com
+- Email: a.abdukarimov@fractal-metascience.org
 - Phone: +998950833850
 - ORCID: https://orcid.org/0009-0000-6394-4912
 - Zotero library: https://www.zotero.org/abdurashid_abdukarimov
