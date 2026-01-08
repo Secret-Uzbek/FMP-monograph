@@ -12,7 +12,7 @@ Abdurashid Abdukarimov\\
 Independent Researcher\\
 Tashkent, Uzbekistan\\
 ORCID: 0009-0000-6394-4912\\
-\texttt{a.a.abdukarimov@tutamail.com}
+\texttt{a.abdukarimov@fractal-metascience.org}
 }
 
 \date{2025}
