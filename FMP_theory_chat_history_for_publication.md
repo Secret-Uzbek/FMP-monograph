@@ -468,7 +468,7 @@ Abdurashid Abdukarimov\\
 Independent Researcher\\
 Tashkent, Uzbekistan\\
 ORCID: 0009-0000-6394-4912\\
-\texttt{a.a.abdukarimov@tutamail.com}
+\texttt{a.abdukarimov@fractal-metascience.org}
 }
 
 \date{2025}
@@ -731,7 +731,7 @@ Abdurashid Abdukarimov\\
 Independent Researcher\\
 Tashkent, Uzbekistan\\
 ORCID: 0009-0000-6394-4912\\
-\texttt{a.a.abdukarimov@tutamail.com}
+\texttt{a.abdukarimov@fractal-metascience.org}
 }
 
 \date{2025}
@@ -994,7 +994,7 @@ Abdurashid Abdukarimov\\
 Independent Researcher\\
 Tashkent, Uzbekistan\\
 ORCID: 0009-0000-6394-4912\\
-\texttt{a.a.abdukarimov@tutamail.com}
+\texttt{a.abdukarimov@fractal-metascience.org}
 }
 
 \date{2025}
@@ -10972,7 +10972,7 @@ Do you want the author name and affiliation to appear exactly as:
 Abdurashid Abdukarimov
 Independent Researcher, Tashkent, Uzbekistan
 ORCID: 0009-0000-6394-4912
-Email: a.a.abdukarimov@tutamail.com
+Email: a.abdukarimov@fractal-metascience.org
 
 ✅ Confirm this or send any updates (e.g., second affiliation or alternate email).
 Once confirmed — I’ll generate both LaTeX + Word full publication versions immediately.
@@ -11009,7 +11009,7 @@ Author line will read exactly as:
 Abdurashid Abdukarimov
 Independent Researcher, Tashkent, Uzbekistan
 ORCID 0009-0000-6394-4912
-Email a.a.abdukarimov@tutamail.com
+Email a.abdukarimov@fractal-metascience.org
 
 Before rendering, one quick confirmation:
 Would you like me to include the Terra Codex validation section (AIUZ project case study) inside the main paper as Section 5 – Applications,
@@ -11546,7 +11546,7 @@ v3.0	2026	L7	Quantum-Transpersonal Integration	book
 
 Title Page
 Abdurashid Abdukarimov — Independent Researcher, Tashkent, Uzbekistan
-ORCID 0009-0000-6394-4912 · a.a.abdukarimov@tutamail.com
+ORCID 0009-0000-6394-4912 · a.abdukarimov@fractal-metascience.org
 
 Abstract + Keywords — уже полностью готовые.
 Body — как ты написал: Introduction → System Architecture → Token Economy → Multicultural Adaptation → Ethics → Validation → Conclusions.
@@ -11589,7 +11589,7 @@ Title: AIUZ Terra Ecosystem: A Scalable, Ethical, and Culturally Adaptive Educat
 Author: Abdurashid Abdukarimov
 Affiliation: Independent Researcher, Tashkent, Uzbekistan
 ORCID: 0009-0000-6394-4912
-Email: a.a.abdukarimov@tutamail.com
+Email: a.abdukarimov@fractal-metascience.org
 
 Language: English (journal submission standard)
 Primary Categories: cs.AI, cs.CY, ed-ph
@@ -11707,7 +11707,7 @@ Fractal_Metascience_Complete_v2.3_Terra.zip
 Author: Abdurashid Abdukarimov  
 Affiliation: Independent Researcher, Tashkent, Uzbekistan  
 ORCID: 0009-0000-6394-4912  
-Email: a.a.abdukarimov@tutamail.com  
+Email: a.abdukarimov@fractal-metascience.org  
 License: CC BY-NC-SA 4.0 International
 
 
