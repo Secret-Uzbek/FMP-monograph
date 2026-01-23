@@ -44,3 +44,7 @@
 ### 🌐 Шаг 5 — «Open-source фундамент»
 - [ ] GitHub-release `v1.0.0` → tag: `10.5281/zenodo.17404325`
 - [ ] Структура репозитория:
+
+---
+**Contact:** a.abdukarimov@fractal-metascience.org  
+**ORCID:** 0009-0000-6394-4912
