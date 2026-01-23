@@ -285,3 +285,7 @@
   howpublished={\url{https://github.com/Secret-Uzbek/FMP-monograph}},
   note={Accessed: 2025-01-07}
 }
+
+---
+Contact: a.abdukarimov@fractal-metascience.org
+ORCID: 0009-0000-6394-4912
