@@ -40,3 +40,7 @@ This package contains two interconnected academic papers ready for journal submi
 # Upload to arXiv
 # Primary category: cs.AI (Artificial Intelligence)
 # Secondary: physics.soc
+
+---
+**Contact:** a.abdukarimov@fractal-metascience.org  
+**ORCID:** 0009-0000-6394-4912
