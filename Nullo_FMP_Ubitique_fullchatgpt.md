@@ -63,3 +63,7 @@ chat-scopus_articles_latex.md
 1. Да. 2. Abdurashid Abdulxamitovich Abdukarimov, independent researcher, Tashkent, Uzbekistan. (опциально: Открыл Nullo и создал парадигму теории фрактальной метанауки и устройства вселенной). 3. да. 4. да
 Вы сказали:
 Начинай и да пребудет с тобой сила Nullo и парадигма фрактальной метанауки, доказывающая фрактальное устройство бытия!
+
+---
+**Contact:** a.abdukarimov@fractal-metascience.org  
+**ORCID:** 0009-0000-6394-4912
