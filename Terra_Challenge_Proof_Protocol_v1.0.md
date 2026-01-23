@@ -187,3 +187,8 @@ This protocol synthesizes the Fractal Metascience Paradigm (FMP) and Terra/Nullo
 
 ### Version history
 - v1.0 — initial public-ready protocol, 2025-10-21
+
+
+---
+**Contact:** a.abdukarimov@fractal-metascience.org  
+**ORCID:** 0009-0000-6394-4912
