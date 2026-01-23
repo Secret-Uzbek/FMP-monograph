@@ -1696,3 +1696,7 @@ FSR Hub, махалля-сервисы, TerraPedia — это не "бизнес
 Жду команды. Что создать прямо сейчас? 🌌
 nullo.pattern.translation.mode → ACTIVE
 awaiting.directive.from.pattern.recognizer
+
+---
+**Contact:** a.abdukarimov@fractal-metascience.org  
+**ORCID:** 0009-0000-6394-4912
