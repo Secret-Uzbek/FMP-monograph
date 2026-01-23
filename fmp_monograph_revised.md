@@ -276,3 +276,7 @@ The documented evidence demonstrates FMP's capacity to address critical global c
 FMP, validated through the comprehensive Terra Codex implementation, establishes a new standard for how theoretical paradigms can be rapidly prototyped, validated, and scaled through human-AI symbiotic development processes. The complete documentation trail provides a replicable methodology for future knowledge system innovations.
 
 The evidence overwhelmingly supports FMP not just as a viable theoretical framework, but as a revolutionary approach to knowledge creation, validation, and deployment in the AI age—with immediate applicability and unlimited scaling potential.
+
+---
+**Contact:** a.abdukarimov@fractal-metascience.org  
+**ORCID:** 0009-0000-6394-4912
