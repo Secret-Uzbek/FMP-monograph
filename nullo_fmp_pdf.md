@@ -90,3 +90,8 @@ This work presents the discovery and operationalization of NULLO and the Fractal
 - Embed metadata: title, authors, abstract, keywords.
 - Ensure Zenodo & arXiv compatibility (PDF/A if possible).
 
+
+
+---
+**Contact:** a.abdukarimov@fractal-metascience.org  
+**ORCID:** 0009-0000-6394-4912
