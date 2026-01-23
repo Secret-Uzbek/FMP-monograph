@@ -260,3 +260,7 @@ This research was conducted independently with assistance from AI collaboration 
 \bibliography{fmp_references}
 
 \end{document}
+
+---
+Contact: a.abdukarimov@fractal-metascience.org
+ORCID: 0009-0000-6394-4912
