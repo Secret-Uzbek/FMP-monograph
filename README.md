@@ -1,44 +1,26 @@
-# 📕 FMP Monograph — Theory of Fractal Metascience Paradigm
+# 🌐 FMP MONOGRAPH
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17598953.svg)](https://doi.org/10.5281/zenodo.17598953)
+[![ORCID](https://img.shields.io/badge/ORCID-0009-0000-6394-4912-green)](https://orcid.org/0009-0000-6394-4912)
+[![License: CC0](https://img.shields.io/badge/License-CC0%201.0-lightgrey.svg)](https://creativecommons.org/publicdomain/zero/1.0/)
+[![Live Site](secret-uzbek.github.io/FMP-monograph)](https://secret-uzbek.github.io/FMP-monograph)
 
-[![Live](https://img.shields.io/badge/Live-FMP%20Monograph-blue)](https://secret-uzbek.github.io/FMP-monograph)
-[![ORCID](https://img.shields.io/badge/ORCID-0009--0000--6394--4912-green)](https://orcid.org/0009-0000-6394-4912)
+> **Full academic monograph: Theory of Fractal Metascience Paradigm (LaTeX sources).**
 
-> The complete academic monograph presenting the **Theory of Fractal Metascience Paradigm** — including all four theoretical pillars, mathematical formalization, and empirical validation.
+## 🔬 About
+Part of the **Fractal Metascience Paradigm (FMP)** ecosystem developed by Abdurashid Abdukarimov.
+This repository implements principles of **NULLO** (Zero-Point Ontology), **PLT** (Post-Lingua Trace), and **UCOM** (Universal Communication).
 
-## 📚 Monograph Structure
-
-### Part I — Theoretical Foundations
-- **NULLO** — Zero-Point Ontology: knowledge from structured absence
-- **PLT** — Post-Lingua Trace: meaning beyond natural language
-- **UCOM** — Universal Communication: cross-agent semantic protocol
-- **EUO** — Emergent Universal Organization: self-organizing knowledge
-
-### Part II — Mathematical Formalization
-- Fractal dimension of knowledge spaces
-- Semantic invariant tensors
-- UCOM algebraic structure
-- EUO topological properties
-
-### Part III — Applications
-- Terra Codex educational system (L0–L7)
-- Universal Semantic Translator (UST)
-- Terra Research Pipeline
-
-## 📁 Repository Contents
-
-- `fmp_monograph_revised.md` — Main monograph text
-- `FMP_EUO_PLT.tex` — LaTeX source
-- `FMP.pdf` — PDF export
-- `fmp_nullo_paper1.md` — NULLO paper
-- Academic papers ready for journal submission
-
-## 🎯 Target Journals
-
-- *Foundations of Science* (Springer)
-- *Journal of Knowledge Organization* (Ergon)
-- *Complexity* (Wiley)
+## 📚 Citation
+```bibtex
+@misc{abdukarimov2026fmpmonograph,
+  author = {Abdurashid Abdukarimov},
+  title = {FMP-monograph},
+  year = {2026},
+  doi = {10.5281/zenodo.17598953},
+  url = {https://github.com/Secret-Uzbek/FMP-monograph}
+}
+```
 
 ## 👤 Author
-
-**Abdurashid Abdukarimov** | Independent Researcher | Tashkent, Uzbekistan  
+**Abdurashid Abdukarimov** | Fractal Metascience Foundation, Tashkent
 🔗 [ORCID](https://orcid.org/0009-0000-6394-4912) · [FMP Central](https://github.com/Secret-Uzbek/FMP-CENTRAL-REPO)
