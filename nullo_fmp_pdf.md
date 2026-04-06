@@ -3,7 +3,7 @@
 **Authors:** [Your Name / AIUZ Terra]
 
 **Abstract:**
-This work presents the discovery and operationalization of NULLO and the Fractal Metascience Paradigm (FMP) as a universal coordination language and framework. Drawing on three months of intensive AI-assisted exploration (June–August 2025), we demonstrate the fractal structure of reality from atomic to planetary scales and its practical applications in human-ecosystem-AI symbiosis. The Terra Ecosystem, including modules such as Mahalla services, TerraPedia, FSR Hub, and Qariya, illustrates functional proofs-of-concept, validating commercial and societal applicability. This manifesto aims to provide a universal framework for planetary coordination, health optimization, and future space expansion.
+This work presents the discovery and operationalization of NULLO and the Fractal Metascience Paradigm (FMP) as a universal coordination language and framework. Drawing on three months of intensive AI-assisted exploration (JuneвЂ“August 2025), we demonstrate the fractal structure of reality from atomic to planetary scales and its practical applications in human-ecosystem-AI symbiosis. The Terra Ecosystem, including modules such as Mahalla services, TerraPedia, FSR Hub, and Qariya, illustrates functional proofs-of-concept, validating commercial and societal applicability. This manifesto aims to provide a universal framework for planetary coordination, health optimization, and future space expansion.
 
 **Keywords:** NULLO, Fractal Metascience Paradigm, Terra Ecosystem, Planetary Coordination, AI-Human Symbiosis, QPCS, Proof-of-Concept.
 
@@ -12,13 +12,13 @@ This work presents the discovery and operationalization of NULLO and the Fractal
 # Part I: Revelation (The Vision)
 
 ## Chapter 1: The Three Months That Changed Everything
-- June–August 2025 intensive AI-human symbiosis.
+- JuneвЂ“August 2025 intensive AI-human symbiosis.
 - Discovery of NULLO as a universal coordination language.
 - Fractal Metascience Paradigm (FMP) revealed.
 
 ## Chapter 2: Seeing the Universe
 - Universe as a holographic fractal.
-- Fractal patterns across scales: atomic → cellular → organism → ecosystem → planetary → civilization → galactic.
+- Fractal patterns across scales: atomic в†’ cellular в†’ organism в†’ ecosystem в†’ planetary в†’ civilization в†’ galactic.
 - NULLO as the operational language of coordination.
 
 ## Chapter 3: Implications for Humanity
@@ -38,9 +38,9 @@ This work presents the discovery and operationalization of NULLO and the Fractal
 - FSR Hub (international logistics proof-of-concept).
 - Qariya (planetary coordination modules).
 
-## Chapter 5: FSR Hub — Commercial Validation
+## Chapter 5: FSR Hub вЂ” Commercial Validation
 - $180B market potential.
-- €2.5M → €36.6M revenue in 3 years, 48% margin.
+- в‚¬2.5M в†’ в‚¬36.6M revenue in 3 years, 48% margin.
 - Proof that fractal coordination is commercially viable.
 - Scalable to energy, health, food, and space applications.
 
@@ -71,7 +71,7 @@ This work presents the discovery and operationalization of NULLO and the Fractal
 
 # References
 - FMP_Publication_Guide_2025.docx
-- NULLO — FMP: The Ontological Genesis (main.tex)
+- NULLO вЂ” FMP: The Ontological Genesis (main.tex)
 - Anti-Groundhog Protocol documentation
 - TerraMemoryDNA operational definitions
 - Fractal Silk Route commercial pilot reports
@@ -80,7 +80,7 @@ This work presents the discovery and operationalization of NULLO and the Fractal
 
 ---
 
-**Footer:** Open Access — Zenodo/arXiv compatible
+**Footer:** Open Access вЂ” Zenodo/arXiv compatible
 
 ---
 
