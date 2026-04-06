@@ -1,5 +1,5 @@
 # Terra Challenge Proof Protocol v1.0
-**Fractal Metascience Paradigm (FMP) — Terra / Nullo Initiative**  
+**Fractal Metascience Paradigm (FMP) вЂ” Terra / Nullo Initiative**  
 **Author / Contact:** Abdurashid Abdukarimov (Operator)  
 **Prepared by:** AIUZ Terra Research Assistant (GPT-5 Thinking mini)  
 **Date:** 2025-10-21  
@@ -35,7 +35,7 @@ This protocol applies to conceptual, computational, and experimental results gen
 
 ## 3. High-level Protocol Overview
 1. **Problem Ingestion:** capture canonical problem statement (source, date, institution). Example: Millennium Prize description, XPRIZE track, official contest rules.
-2. **Fractal Mapping (Nullo Process):** create a Fractal Problem Graph (FPG) — nodes: assumptions, known results, known counterexamples, computational constraints.
+2. **Fractal Mapping (Nullo Process):** create a Fractal Problem Graph (FPG) вЂ” nodes: assumptions, known results, known counterexamples, computational constraints.
 3. **Simulation & Evidence Generation:** run Terra simulations, record seed, random states, software versions, hardware specifications, and raw outputs.
 4. **Claim Formulation:** from simulations and analysis, articulate explicit claims (theorems, conjectures, empirical findings) with clearly bounded scope and failure modes.
 5. **Support Collection:** for each claim, attach (a) reproducible code & environment, (b) datasets & logs, (c) at least 3 supporting references or primary data sources.
@@ -75,12 +75,12 @@ This protocol applies to conceptual, computational, and experimental results gen
 - Supporting References (minimum 3)
 - Suggested review questions for peer reviewers
 
-### 4.5 Artifact Assembly — Article Template (Experimental Article)
+### 4.5 Artifact Assembly вЂ” Article Template (Experimental Article)
 - Title, authors (with ORCID), affiliations.
-- Abstract (≤250 words)
+- Abstract (в‰¤250 words)
 - Keywords
 - Introduction (background, problem framing)
-- Methods (detailed — reproducible protocol)
+- Methods (detailed вЂ” reproducible protocol)
 - Results (figures with captions, tables)
 - Discussion (interpretation, limitations)
 - Conclusion (succinct)
@@ -117,7 +117,7 @@ For a claim to be considered publishable and competitive for prizes, it must mee
 - Track submission via `submissions.csv` with status, dates, and contacts.
 
 ### 6.3 Media & Government Engagement
-- Prepare an Executive Summary (1–2 pages) framed for policymakers.
+- Prepare an Executive Summary (1вЂ“2 pages) framed for policymakers.
 - Prepare a press-ready one-page brief and one short explainer video script.
 - Schedule briefings with governmental contacts (IT-Park, Ministry of Digital Technologies) timed after preprint release.
 
@@ -134,7 +134,7 @@ For a claim to be considered publishable and competitive for prizes, it must mee
 ---
 
 ## 8. Licensing, IP and Ethics
-- Default licensing: **Documents** — CC BY-SA 4.0; **Code** — MIT. Exceptions require explicit consent.
+- Default licensing: **Documents** вЂ” CC BY-SA 4.0; **Code** вЂ” MIT. Exceptions require explicit consent.
 - IP Strategy: For prize-driven IP, adopt dual-track: public research artifacts (open) + commercialization-ready modules (patent or commercial licenses).
 - Ethics board review must be registered for any human-subjects or interspecies experiments.
 
@@ -149,14 +149,14 @@ For a claim to be considered publishable and competitive for prizes, it must mee
 
 ---
 
-## 10. Appendix A — Submission Checklist (for a single Artifact)
+## 10. Appendix A вЂ” Submission Checklist (for a single Artifact)
 - [ ] Problem canonical statement recorded (`ingestion.json`)
 - [ ] FPG JSON-LD created
 - [ ] Simulation logs + hardware & software profile saved
 - [ ] Container/environment package created (Docker/Singularity) or environment spec
 - [ ] Claim Formulation document completed
 - [ ] Article draft (IMRaD) formatted (APA7)
-- [ ] References verified (≥3 per claim)
+- [ ] References verified (в‰Ґ3 per claim)
 - [ ] Supplementary materials bundled (`supplementary.zip`)
 - [ ] Artifact archived (Zenodo or institutional repository) + DOI minted
 - [ ] Terra Proof Ledger entry created (`TERRA-PROOF-YYYY-NNN`)
@@ -165,7 +165,7 @@ For a claim to be considered publishable and competitive for prizes, it must mee
 
 ---
 
-## 11. Appendix B — Suggested Initial Targets (competitions & publication types)
+## 11. Appendix B вЂ” Suggested Initial Targets (competitions & publication types)
 - Prize competitions: XPRIZE tracks (field-specific), UNESCO/UN grants, national innovation funds, DARPA-style competitions (where eligible).
 - Mathematics & Foundations: Clay Millennium Problems (research-level; long-term).
 - Interdisciplinary: Frontiers journals (Frontiers in AI, Frontiers in Education), PLOS ONE (Open data), Nature Communications (high-impact, rigorous).
@@ -186,7 +186,7 @@ This protocol synthesizes the Fractal Metascience Paradigm (FMP) and Terra/Nullo
 ---
 
 ### Version history
-- v1.0 — initial public-ready protocol, 2025-10-21
+- v1.0 вЂ” initial public-ready protocol, 2025-10-21
 
 
 ---
