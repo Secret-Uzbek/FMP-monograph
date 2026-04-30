@@ -1,8 +1,24 @@
 # Security Policy
 
-## Supported Versions
-Use this section to tell people about which versions of your project are currently being supported with security updates.
+## Scope
 
-## Reporting a Vulnerability
-Please report security issues to **a.a.abdukarimov@tutamail.com**.
-Do not open public issues for security vulnerabilities.
+This repository is monograph-facing and publication-facing.
+
+Security concerns here include:
+
+- leaked credentials or tokens;
+- broken release or DOI workflows;
+- accidental disclosure of sensitive notes or personal data;
+- integrity damage to citation and monograph metadata.
+
+## Supported branch
+
+- `main`
+
+## Reporting
+
+Do not post sensitive details publicly.
+
+Report privately to:
+
+- `a.abdukarimov@fractal-metascience.org`

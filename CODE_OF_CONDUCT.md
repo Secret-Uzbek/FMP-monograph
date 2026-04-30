@@ -1,7 +1,21 @@
-# Contributor Covenant Code of Conduct
+# Code of Conduct
 
-## Our Pledge
-We as members, contributors, and leaders pledge to make participation in our community a harassment-free experience for everyone...
+This repository supports the FMP monograph branch.
 
-## Enforcement
-Instances of abusive, harassing, or otherwise unacceptable behavior may be reported to the community leaders responsible for enforcement at a.a.abdukarimov@tutamail.com.
+## Expected behavior
+
+- work respectfully;
+- improve structure, trace, and readability;
+- reduce duplication and false completeness;
+- preserve publication integrity.
+
+## Unacceptable behavior
+
+- harassment or intimidation;
+- deliberate metadata vandalism;
+- treating damaged or placeholder files as finished work;
+- public disclosure of sensitive security details.
+
+## Reporting
+
+Use the maintainer contact routes already published in the repository.
