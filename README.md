@@ -8,6 +8,7 @@
 [![Release Pipeline](https://github.com/Secret-Uzbek/FMP-monograph/actions/workflows/release-and-publish.yml/badge.svg)](https://github.com/Secret-Uzbek/FMP-monograph/actions/workflows/release-and-publish.yml)
 [![Zenodo Sync](https://github.com/Secret-Uzbek/FMP-monograph/actions/workflows/zenodo-release.yml/badge.svg)](https://github.com/Secret-Uzbek/FMP-monograph/actions/workflows/zenodo-release.yml)
 [![Terra Audit](https://github.com/Secret-Uzbek/FMP-monograph/actions/workflows/terra-audit.yml/badge.svg)](https://github.com/Secret-Uzbek/FMP-monograph/actions/workflows/terra-audit.yml)
+[![Monograph Package](https://github.com/Secret-Uzbek/FMP-monograph/actions/workflows/build-monograph-package.yml/badge.svg)](https://github.com/Secret-Uzbek/FMP-monograph/actions/workflows/build-monograph-package.yml)
 [![Central Hub](https://img.shields.io/badge/Central-FMP--CENTRAL--REPO-blue)](https://github.com/Secret-Uzbek/FMP-CENTRAL-REPO)
 [![Legal](https://img.shields.io/badge/Legal-terra--legal-0f6b57)](https://github.com/AIUZ-Terra-Codex-EcoSystem/terra-legal)
 
@@ -36,9 +37,11 @@ It should not act like:
 
 1. `README.md`
 2. `CITATION.cff`
-3. `fmp_monograph_revised.md`
-4. `main.tex` and bibliography files
-5. supporting publication guides and submission files
+3. `LIVING_INDEX.md`
+4. `docs/Living_Map_v1_0.md`
+5. `fmp_monograph_revised.md`
+6. `main.tex` and bibliography files
+7. supporting publication guides and submission files
 
 ## Ecosystem position
 
@@ -62,3 +65,10 @@ Do not overload this repository with:
 - donor governance files rewritten without need;
 - machine maps as first human entry;
 - arbitrary archive debris.
+
+## Build surface
+
+This repository now exposes a dedicated `build-monograph-package` workflow.
+It assembles the current primary monograph spine and supporting publication files
+into a reusable workflow artifact instead of treating the repository as a flat
+dump only.

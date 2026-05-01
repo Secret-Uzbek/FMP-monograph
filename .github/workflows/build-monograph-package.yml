@@ -1,0 +1,91 @@
+name: build-monograph-package
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "README.md"
+      - "fmp_monograph_revised.md"
+      - "main.tex"
+      - "references.bib"
+      - "CITATION.cff"
+      - "FMP.pdf"
+      - "docs/**"
+      - ".github/workflows/build-monograph-package.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-package:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Assemble monograph package
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p build/monograph-package/primary
+          mkdir -p build/monograph-package/docs
+          mkdir -p build/monograph-package/supporting
+
+          cp README.md build/monograph-package/primary/
+          cp CITATION.cff build/monograph-package/primary/
+          cp fmp_monograph_revised.md build/monograph-package/primary/
+          cp main.tex build/monograph-package/primary/
+          cp references.bib build/monograph-package/primary/
+
+          if [ -f FMP.pdf ]; then
+            cp FMP.pdf build/monograph-package/primary/
+          fi
+
+          if [ -f "FMP Monograph - Revised Validation & Evidence Sections.pdf" ]; then
+            cp "FMP Monograph - Revised Validation & Evidence Sections.pdf" build/monograph-package/supporting/
+          fi
+
+          if [ -f "FMP Papers Submission Guide.pdf" ]; then
+            cp "FMP Papers Submission Guide.pdf" build/monograph-package/supporting/
+          fi
+
+          if [ -f "FMP Papers - Quick Start Guide.pdf" ]; then
+            cp "FMP Papers - Quick Start Guide.pdf" build/monograph-package/supporting/
+          fi
+
+          if [ -f "FMP_Publication_Guide_2025.docx" ]; then
+            cp "FMP_Publication_Guide_2025.docx" build/monograph-package/supporting/
+          fi
+
+          cp docs/Living_Map_v1_0.md build/monograph-package/docs/
+          cp LIVING_INDEX.md build/monograph-package/docs/
+
+          cat > build/monograph-package/MANIFEST.md <<'EOF'
+          # FMP Monograph Package Manifest
+
+          This artifact contains the current primary monograph spine and the
+          supporting publication surface.
+
+          ## Primary
+
+          - README.md
+          - CITATION.cff
+          - fmp_monograph_revised.md
+          - main.tex
+          - references.bib
+          - FMP.pdf (if present)
+
+          ## Supporting
+
+          - Living_Map_v1_0.md
+          - LIVING_INDEX.md
+          - publication guide PDFs/DOCX when present
+          EOF
+
+      - name: Upload monograph package artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: fmp-monograph-package
+          path: build/monograph-package
