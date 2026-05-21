@@ -1,37 +1,31 @@
-name: Zenodo Release
+name: Zenodo DOI Sync
 
 on:
-  push:
-    tags:
-      - "v*.*.*"
   workflow_dispatch:
     inputs:
-      version:
-        description: "Version label, for example v2.1.0"
+      expected_doi:
+        description: "Existing DOI to verify, for example 10.5281/zenodo.20116240"
+        required: false
+        default: ""
+      build_pdf:
+        description: "Build PDF from TeX source"
         required: true
-        default: "v2.1.0"
-      publish:
-        description: "Publish to Zenodo now? Use false for draft test."
-        required: true
-        default: "false"
+        default: "true"
         type: choice
         options:
-          - "false"
           - "true"
+          - "false"
 
 permissions:
   contents: read
 
 concurrency:
-  group: zenodo-release-${{ github.repository }}-${{ github.ref_name }}
+  group: zenodo-doi-sync-${{ github.repository }}-${{ github.run_id }}
   cancel-in-progress: false
 
-env:
-  ZENODO_API: https://zenodo.org/api
-
 jobs:
-  build-and-upload:
-    name: Build PDF and upload Zenodo draft
+  verify-and-build:
+    name: Verify DOI metadata and optionally build PDF
     runs-on: ubuntu-latest
 
     steps:
@@ -40,33 +34,69 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Validate required files and token
+      - name: Validate repository metadata
         shell: bash
-        env:
-          ZENODO_TOKEN: ${{ secrets.ZENODO_TOKEN }}
         run: |
           set -euo pipefail
 
-          if [ -z "${ZENODO_TOKEN:-}" ]; then
-            echo "::error::ZENODO_TOKEN is not configured. Add it in Settings -> Secrets and variables -> Actions."
+          if [ -f ".zenodo.json" ]; then
+            python3 -m json.tool .zenodo.json > /dev/null
+            echo ".zenodo.json is valid JSON"
+          else
+            echo "::warning::.zenodo.json is not present. DOI sync can continue, but repository metadata should be added."
+          fi
+
+          if [ -f "CITATION.cff" ]; then
+            echo "CITATION.cff present"
+          else
+            echo "::warning::CITATION.cff is not present."
+          fi
+
+      - name: Verify existing DOI on Zenodo
+        id: doi
+        shell: bash
+        run: |
+          set -euo pipefail
+          DOI="${{ github.event.inputs.expected_doi }}"
+
+          if [ -z "$DOI" ]; then
+            echo "No expected DOI supplied. Skipping DOI API check."
+            echo "status=skipped" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          NORMALIZED=$(printf '%s' "$DOI" | sed 's#https://doi.org/##I' | tr '[:upper:]' '[:lower:]')
+          RECORD_ID=$(printf '%s' "$NORMALIZED" | awk -F. '{print $NF}')
+
+          if ! printf '%s' "$NORMALIZED" | grep -Eq '^10\.5281/zenodo\.[0-9]+$'; then
+            echo "::warning::Expected DOI does not look like a Zenodo DOI: $DOI"
+            echo "status=unverified_format" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          RESPONSE=$(curl -fsSL "https://zenodo.org/api/records/${RECORD_ID}" || true)
+          if [ -z "$RESPONSE" ]; then
+            echo "::error::Zenodo record not found or API unavailable for DOI: $DOI"
+            echo "status=not_found" >> "$GITHUB_OUTPUT"
             exit 1
           fi
 
-          if [ ! -f ".zenodo.json" ]; then
-            echo "::error::.zenodo.json is missing from the repository root."
+          FOUND_DOI=$(printf '%s' "$RESPONSE" | python3 -c "import json,sys; print((json.load(sys.stdin).get('doi') or '').lower())")
+          if [ "$FOUND_DOI" != "$NORMALIZED" ]; then
+            echo "::error::Zenodo returned DOI '$FOUND_DOI', expected '$NORMALIZED'"
+            echo "status=mismatch" >> "$GITHUB_OUTPUT"
             exit 1
           fi
 
-          python3 -m json.tool .zenodo.json > /dev/null
+          TITLE=$(printf '%s' "$RESPONSE" | python3 -c "import json,sys; print(json.load(sys.stdin).get('metadata',{}).get('title',''))")
+          echo "Verified DOI: $FOUND_DOI"
+          echo "Title: $TITLE"
+          echo "status=verified" >> "$GITHUB_OUTPUT"
+          echo "found_doi=$FOUND_DOI" >> "$GITHUB_OUTPUT"
+          echo "title=$TITLE" >> "$GITHUB_OUTPUT"
 
-          if [ ! -f "main.tex" ] && [ ! -f "monograph.tex" ]; then
-            if ! find . -maxdepth 2 -name "*.tex" ! -path "./.github/*" | grep -q .; then
-              echo "::error::No TeX source was found. Expected main.tex, monograph.tex, or another .tex file."
-              exit 1
-            fi
-          fi
-
-      - name: Install TeX and build tools
+      - name: Install TeX build tools
+        if: github.event.inputs.build_pdf == 'true'
         shell: bash
         run: |
           set -euo pipefail
@@ -76,17 +106,19 @@ jobs:
             texlive-latex-extra \
             texlive-science \
             texlive-bibtex-extra \
+            texlive-lang-cyrillic \
             biber \
             fonts-dejavu \
             zip
 
       - name: Find TeX entry point
+        if: github.event.inputs.build_pdf == 'true'
         id: tex
         shell: bash
         run: |
           set -euo pipefail
           MAIN=""
-          for candidate in main.tex monograph.tex nullo_fmp.tex nullo.tex fmp.tex; do
+          for candidate in fractal_metascience_main.tex main.tex monograph.tex nullo_ontological_zero_point.tex nullo_fmp.tex nullo.tex fmp.tex; do
             if [ -f "$candidate" ]; then
               MAIN="$candidate"
               break
@@ -94,7 +126,14 @@ jobs:
           done
 
           if [ -z "$MAIN" ]; then
-            MAIN=$(find . -maxdepth 2 -name "*.tex" ! -path "./.github/*" | sort | head -n 1)
+            MAIN=$(find . -maxdepth 3 -name "*.tex" ! -path "./.github/*" | sort | head -n 1 || true)
+          fi
+
+          if [ -z "$MAIN" ]; then
+            echo "::warning::No TeX source found. Skipping PDF build."
+            echo "main=" >> "$GITHUB_OUTPUT"
+            echo "base=" >> "$GITHUB_OUTPUT"
+            exit 0
           fi
 
           echo "main=$MAIN" >> "$GITHUB_OUTPUT"
@@ -102,6 +141,7 @@ jobs:
           echo "Using TeX entry point: $MAIN"
 
       - name: Build PDF
+        if: github.event.inputs.build_pdf == 'true' && steps.tex.outputs.main != ''
         id: pdf
         shell: bash
         run: |
@@ -118,7 +158,7 @@ jobs:
 
           PDF="${BASE}.pdf"
           if [ ! -f "$PDF" ]; then
-            PDF=$(find . -maxdepth 1 -name "*.pdf" | sort | head -n 1)
+            PDF=$(find . -maxdepth 2 -name "*.pdf" | sort | head -n 1 || true)
           fi
 
           if [ -z "$PDF" ] || [ ! -f "$PDF" ]; then
@@ -129,118 +169,21 @@ jobs:
           echo "pdf=${PDF#./}" >> "$GITHUB_OUTPUT"
           echo "Built PDF: ${PDF#./}"
 
-      - name: Create source archive
-        id: archive
+      - name: Upload built PDF as workflow artifact
+        if: github.event.inputs.build_pdf == 'true' && steps.pdf.outputs.pdf != ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: built-pdf
+          path: ${{ steps.pdf.outputs.pdf }}
+
+      - name: Summary
         shell: bash
         run: |
-          set -euo pipefail
-          VERSION="${{ github.event.inputs.version || github.ref_name || 'v2.1.0' }}"
-          ZIP="FMP-monograph-${VERSION}-source.zip"
-          zip -r "$ZIP" . \
-            --exclude ".git/*" \
-            --exclude ".github/*" \
-            --exclude "*.zip" \
-            --exclude "*.pdf" \
-            --exclude "*.aux" \
-            --exclude "*.bcf" \
-            --exclude "*.bbl" \
-            --exclude "*.blg" \
-            --exclude "*.log" \
-            --exclude "*.out" \
-            --exclude "*.run.xml" \
-            --exclude "*.toc"
-          echo "zip=$ZIP" >> "$GITHUB_OUTPUT"
-          echo "Created source archive: $ZIP"
-
-      - name: Create Zenodo deposition draft
-        id: dep
-        shell: bash
-        env:
-          ZENODO_TOKEN: ${{ secrets.ZENODO_TOKEN }}
-        run: |
-          set -euo pipefail
-          RESPONSE=$(curl -fsS -X POST \
-            -H "Content-Type: application/json" \
-            -H "Authorization: Bearer $ZENODO_TOKEN" \
-            "$ZENODO_API/deposit/depositions" \
-            -d '{}')
-
-          DEP_ID=$(printf '%s' "$RESPONSE" | python3 -c "import json,sys; print(json.load(sys.stdin)['id'])")
-          BUCKET=$(printf '%s' "$RESPONSE" | python3 -c "import json,sys; print(json.load(sys.stdin)['links']['bucket'])")
-
-          echo "dep_id=$DEP_ID" >> "$GITHUB_OUTPUT"
-          echo "bucket=$BUCKET" >> "$GITHUB_OUTPUT"
-          echo "Created Zenodo deposition draft: $DEP_ID"
-
-      - name: Upload Zenodo metadata
-        shell: bash
-        env:
-          ZENODO_TOKEN: ${{ secrets.ZENODO_TOKEN }}
-        run: |
-          set -euo pipefail
-          python3 - <<'PY' > metadata.json
-import json
-from pathlib import Path
-metadata = json.loads(Path('.zenodo.json').read_text(encoding='utf-8'))
-print(json.dumps({'metadata': metadata}, ensure_ascii=False))
-PY
-          curl -fsS -X PUT \
-            -H "Content-Type: application/json" \
-            -H "Authorization: Bearer $ZENODO_TOKEN" \
-            "$ZENODO_API/deposit/depositions/${{ steps.dep.outputs.dep_id }}" \
-            --data @metadata.json
-
-      - name: Upload PDF to Zenodo bucket
-        shell: bash
-        env:
-          ZENODO_TOKEN: ${{ secrets.ZENODO_TOKEN }}
-        run: |
-          set -euo pipefail
-          PDF="${{ steps.pdf.outputs.pdf }}"
-          curl -fsS -X PUT \
-            -H "Authorization: Bearer $ZENODO_TOKEN" \
-            --upload-file "$PDF" \
-            "${{ steps.dep.outputs.bucket }}/$(basename "$PDF")"
-
-      - name: Upload source archive to Zenodo bucket
-        shell: bash
-        env:
-          ZENODO_TOKEN: ${{ secrets.ZENODO_TOKEN }}
-        run: |
-          set -euo pipefail
-          ZIP="${{ steps.archive.outputs.zip }}"
-          curl -fsS -X PUT \
-            -H "Authorization: Bearer $ZENODO_TOKEN" \
-            --upload-file "$ZIP" \
-            "${{ steps.dep.outputs.bucket }}/$ZIP"
-
-      - name: Publish or keep draft
-        id: publish
-        shell: bash
-        env:
-          ZENODO_TOKEN: ${{ secrets.ZENODO_TOKEN }}
-        run: |
-          set -euo pipefail
-          DEP_ID="${{ steps.dep.outputs.dep_id }}"
-          PUBLISH="${{ github.event.inputs.publish || 'true' }}"
-
-          if [ "${{ github.event_name }}" = "push" ] || [ "$PUBLISH" = "true" ]; then
-            RESPONSE=$(curl -fsS -X POST \
-              -H "Authorization: Bearer $ZENODO_TOKEN" \
-              "$ZENODO_API/deposit/depositions/${DEP_ID}/actions/publish")
-            DOI=$(printf '%s' "$RESPONSE" | python3 -c "import json,sys; print(json.load(sys.stdin).get('doi',''))")
-            echo "doi=$DOI" >> "$GITHUB_OUTPUT"
-            echo "Published DOI: $DOI"
-          else
-            echo "doi=draft" >> "$GITHUB_OUTPUT"
-            echo "Saved as draft deposition: $DEP_ID"
-          fi
-
-      - name: Write workflow summary
-        shell: bash
-        run: |
-          echo "## Zenodo Release" >> "$GITHUB_STEP_SUMMARY"
-          echo "- Deposition: ${{ steps.dep.outputs.dep_id }}" >> "$GITHUB_STEP_SUMMARY"
-          echo "- PDF: ${{ steps.pdf.outputs.pdf }}" >> "$GITHUB_STEP_SUMMARY"
-          echo "- Source archive: ${{ steps.archive.outputs.zip }}" >> "$GITHUB_STEP_SUMMARY"
-          echo "- DOI/status: ${{ steps.publish.outputs.doi }}" >> "$GITHUB_STEP_SUMMARY"
+          echo "## Zenodo DOI Sync" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Expected DOI: ${{ github.event.inputs.expected_doi || 'not supplied' }}" >> "$GITHUB_STEP_SUMMARY"
+          echo "- DOI status: ${{ steps.doi.outputs.status || 'not checked' }}" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Found DOI: ${{ steps.doi.outputs.found_doi || 'n/a' }}" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Title: ${{ steps.doi.outputs.title || 'n/a' }}" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Built PDF: ${{ steps.pdf.outputs.pdf || 'not built' }}" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "This workflow does not create a new Zenodo deposition. It verifies/synchronizes an existing DOI and builds the local source package." >> "$GITHUB_STEP_SUMMARY"
