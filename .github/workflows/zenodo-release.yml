@@ -1,127 +1,246 @@
-name: Zenodo DOI Registration
+name: Zenodo Release
 
 on:
-  release:
-    types: [published]
+  push:
+    tags:
+      - "v*.*.*"
   workflow_dispatch:
+    inputs:
+      version:
+        description: "Version label, for example v2.1.0"
+        required: true
+        default: "v2.1.0"
+      publish:
+        description: "Publish to Zenodo now? Use false for draft test."
+        required: true
+        default: "false"
+        type: choice
+        options:
+          - "false"
+          - "true"
+
+permissions:
+  contents: read
 
 concurrency:
-  group: zenodo-${{ github.repository }}-${{ github.event.release.tag_name || github.run_id }}
+  group: zenodo-release-${{ github.repository }}-${{ github.ref_name }}
   cancel-in-progress: false
 
+env:
+  ZENODO_API: https://zenodo.org/api
+
 jobs:
-  register-doi:
+  build-and-upload:
+    name: Build PDF and upload Zenodo draft
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
 
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: Wait for Zenodo webhook
-        if: ${{ github.event_name == 'release' }}
-        run: sleep 90
+      - name: Validate required files and token
+        shell: bash
+        env:
+          ZENODO_TOKEN: ${{ secrets.ZENODO_TOKEN }}
+        run: |
+          set -euo pipefail
 
-      - name: Poll Zenodo for DOI
-        id: zenodo
+          if [ -z "${ZENODO_TOKEN:-}" ]; then
+            echo "::error::ZENODO_TOKEN is not configured. Add it in Settings -> Secrets and variables -> Actions."
+            exit 1
+          fi
+
+          if [ ! -f ".zenodo.json" ]; then
+            echo "::error::.zenodo.json is missing from the repository root."
+            exit 1
+          fi
+
+          python3 -m json.tool .zenodo.json > /dev/null
+
+          if [ ! -f "main.tex" ] && [ ! -f "monograph.tex" ]; then
+            if ! find . -maxdepth 2 -name "*.tex" ! -path "./.github/*" | grep -q .; then
+              echo "::error::No TeX source was found. Expected main.tex, monograph.tex, or another .tex file."
+              exit 1
+            fi
+          fi
+
+      - name: Install TeX and build tools
         shell: bash
         run: |
           set -euo pipefail
-          REPO_URL="https://github.com/${{ github.repository }}"
-          echo "Searching Zenodo for: $REPO_URL"
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends \
+            texlive-xetex \
+            texlive-latex-extra \
+            texlive-science \
+            texlive-bibtex-extra \
+            biber \
+            fonts-dejavu \
+            zip
 
-          for attempt in 1 2 3 4 5; do
-            echo "Attempt $attempt..."
-            RESPONSE=$(curl -fsSL "https://zenodo.org/api/records?q=related_identifier:$REPO_URL&sort=mostrecent&size=1" || echo "")
-            DOI=$(printf "%s" "$RESPONSE" | python3 - <<'PY'
-import json
-import sys
-
-payload = sys.stdin.read().strip()
-if not payload:
-    raise SystemExit(0)
-
-try:
-    data = json.loads(payload)
-except Exception:
-    raise SystemExit(0)
-
-hits = data.get("hits", {}).get("hits", [])
-if hits:
-    doi = hits[0].get("doi") or hits[0].get("metadata", {}).get("doi", "")
-    if doi:
-        print(doi)
-PY
-)
-
-            if [ -n "$DOI" ]; then
-              echo "doi=$DOI" >> "$GITHUB_OUTPUT"
-              echo "Found DOI: $DOI"
-              exit 0
+      - name: Find TeX entry point
+        id: tex
+        shell: bash
+        run: |
+          set -euo pipefail
+          MAIN=""
+          for candidate in main.tex monograph.tex nullo_fmp.tex nullo.tex fmp.tex; do
+            if [ -f "$candidate" ]; then
+              MAIN="$candidate"
+              break
             fi
-
-            echo "DOI not found yet, waiting 60s..."
-            sleep 60
           done
 
-          echo "Zenodo DOI not found after polling window." >> "$GITHUB_STEP_SUMMARY"
+          if [ -z "$MAIN" ]; then
+            MAIN=$(find . -maxdepth 2 -name "*.tex" ! -path "./.github/*" | sort | head -n 1)
+          fi
 
-      - name: Update CITATION.cff
-        if: steps.zenodo.outputs.doi != ''
+          echo "main=$MAIN" >> "$GITHUB_OUTPUT"
+          echo "base=${MAIN%.tex}" >> "$GITHUB_OUTPUT"
+          echo "Using TeX entry point: $MAIN"
+
+      - name: Build PDF
+        id: pdf
         shell: bash
         run: |
           set -euo pipefail
-          DOI="${{ steps.zenodo.outputs.doi }}"
-          VERSION="${{ github.event.release.tag_name || github.ref_name }}"
-          DATE=$(date +%Y-%m-%d)
+          MAIN="${{ steps.tex.outputs.main }}"
+          BASE="${{ steps.tex.outputs.base }}"
 
-          python3 - <<'PY' "$DOI" "$VERSION" "$DATE" "${{ github.repository }}"
-import pathlib
-import re
-import sys
+          xelatex -interaction=nonstopmode -halt-on-error "$MAIN"
+          if [ -f "${BASE}.bcf" ]; then
+            biber "$BASE"
+          fi
+          xelatex -interaction=nonstopmode -halt-on-error "$MAIN"
+          xelatex -interaction=nonstopmode -halt-on-error "$MAIN"
 
-doi, version, date, repo = sys.argv[1:]
-path = pathlib.Path("CITATION.cff")
+          PDF="${BASE}.pdf"
+          if [ ! -f "$PDF" ]; then
+            PDF=$(find . -maxdepth 1 -name "*.pdf" | sort | head -n 1)
+          fi
 
-if path.exists():
-    content = path.read_text(encoding="utf-8")
-else:
-    content = f'''cff-version: 1.2.0
-message: "If you use this software, please cite it as below."
-type: software
-title: "{repo.split('/')[-1]}"
-repository-code: "https://github.com/{repo}"
-url: "https://github.com/{repo}"
-'''
+          if [ -z "$PDF" ] || [ ! -f "$PDF" ]; then
+            echo "::error::PDF build finished but no PDF file was found."
+            exit 1
+          fi
 
-updates = {
-    "doi": doi,
-    "version": version,
-    "date-released": date,
-}
+          echo "pdf=${PDF#./}" >> "$GITHUB_OUTPUT"
+          echo "Built PDF: ${PDF#./}"
 
-for key, value in updates.items():
-    pattern = rf"^(#\s*)?{re.escape(key)}:.*$"
-    if re.search(pattern, content, flags=re.MULTILINE):
-        content = re.sub(pattern, f"{key}: {value}", content, flags=re.MULTILINE)
-    else:
-        if not content.endswith("\\n"):
-            content += "\\n"
-        content += f"{key}: {value}\\n"
+      - name: Create source archive
+        id: archive
+        shell: bash
+        run: |
+          set -euo pipefail
+          VERSION="${{ github.event.inputs.version || github.ref_name || 'v2.1.0' }}"
+          ZIP="FMP-monograph-${VERSION}-source.zip"
+          zip -r "$ZIP" . \
+            --exclude ".git/*" \
+            --exclude ".github/*" \
+            --exclude "*.zip" \
+            --exclude "*.pdf" \
+            --exclude "*.aux" \
+            --exclude "*.bcf" \
+            --exclude "*.bbl" \
+            --exclude "*.blg" \
+            --exclude "*.log" \
+            --exclude "*.out" \
+            --exclude "*.run.xml" \
+            --exclude "*.toc"
+          echo "zip=$ZIP" >> "$GITHUB_OUTPUT"
+          echo "Created source archive: $ZIP"
 
-path.write_text(content, encoding="utf-8")
+      - name: Create Zenodo deposition draft
+        id: dep
+        shell: bash
+        env:
+          ZENODO_TOKEN: ${{ secrets.ZENODO_TOKEN }}
+        run: |
+          set -euo pipefail
+          RESPONSE=$(curl -fsS -X POST \
+            -H "Content-Type: application/json" \
+            -H "Authorization: Bearer $ZENODO_TOKEN" \
+            "$ZENODO_API/deposit/depositions" \
+            -d '{}')
+
+          DEP_ID=$(printf '%s' "$RESPONSE" | python3 -c "import json,sys; print(json.load(sys.stdin)['id'])")
+          BUCKET=$(printf '%s' "$RESPONSE" | python3 -c "import json,sys; print(json.load(sys.stdin)['links']['bucket'])")
+
+          echo "dep_id=$DEP_ID" >> "$GITHUB_OUTPUT"
+          echo "bucket=$BUCKET" >> "$GITHUB_OUTPUT"
+          echo "Created Zenodo deposition draft: $DEP_ID"
+
+      - name: Upload Zenodo metadata
+        shell: bash
+        env:
+          ZENODO_TOKEN: ${{ secrets.ZENODO_TOKEN }}
+        run: |
+          set -euo pipefail
+          python3 - <<'PY' > metadata.json
+import json
+from pathlib import Path
+metadata = json.loads(Path('.zenodo.json').read_text(encoding='utf-8'))
+print(json.dumps({'metadata': metadata}, ensure_ascii=False))
 PY
+          curl -fsS -X PUT \
+            -H "Content-Type: application/json" \
+            -H "Authorization: Bearer $ZENODO_TOKEN" \
+            "$ZENODO_API/deposit/depositions/${{ steps.dep.outputs.dep_id }}" \
+            --data @metadata.json
 
-      - name: Commit CITATION.cff
-        if: steps.zenodo.outputs.doi != ''
+      - name: Upload PDF to Zenodo bucket
         shell: bash
+        env:
+          ZENODO_TOKEN: ${{ secrets.ZENODO_TOKEN }}
         run: |
           set -euo pipefail
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add CITATION.cff
-          git diff --staged --quiet || git commit -m "chore: update CITATION.cff with DOI ${{ steps.zenodo.outputs.doi }}"
-          git push
+          PDF="${{ steps.pdf.outputs.pdf }}"
+          curl -fsS -X PUT \
+            -H "Authorization: Bearer $ZENODO_TOKEN" \
+            --upload-file "$PDF" \
+            "${{ steps.dep.outputs.bucket }}/$(basename "$PDF")"
+
+      - name: Upload source archive to Zenodo bucket
+        shell: bash
+        env:
+          ZENODO_TOKEN: ${{ secrets.ZENODO_TOKEN }}
+        run: |
+          set -euo pipefail
+          ZIP="${{ steps.archive.outputs.zip }}"
+          curl -fsS -X PUT \
+            -H "Authorization: Bearer $ZENODO_TOKEN" \
+            --upload-file "$ZIP" \
+            "${{ steps.dep.outputs.bucket }}/$ZIP"
+
+      - name: Publish or keep draft
+        id: publish
+        shell: bash
+        env:
+          ZENODO_TOKEN: ${{ secrets.ZENODO_TOKEN }}
+        run: |
+          set -euo pipefail
+          DEP_ID="${{ steps.dep.outputs.dep_id }}"
+          PUBLISH="${{ github.event.inputs.publish || 'true' }}"
+
+          if [ "${{ github.event_name }}" = "push" ] || [ "$PUBLISH" = "true" ]; then
+            RESPONSE=$(curl -fsS -X POST \
+              -H "Authorization: Bearer $ZENODO_TOKEN" \
+              "$ZENODO_API/deposit/depositions/${DEP_ID}/actions/publish")
+            DOI=$(printf '%s' "$RESPONSE" | python3 -c "import json,sys; print(json.load(sys.stdin).get('doi',''))")
+            echo "doi=$DOI" >> "$GITHUB_OUTPUT"
+            echo "Published DOI: $DOI"
+          else
+            echo "doi=draft" >> "$GITHUB_OUTPUT"
+            echo "Saved as draft deposition: $DEP_ID"
+          fi
+
+      - name: Write workflow summary
+        shell: bash
+        run: |
+          echo "## Zenodo Release" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Deposition: ${{ steps.dep.outputs.dep_id }}" >> "$GITHUB_STEP_SUMMARY"
+          echo "- PDF: ${{ steps.pdf.outputs.pdf }}" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Source archive: ${{ steps.archive.outputs.zip }}" >> "$GITHUB_STEP_SUMMARY"
+          echo "- DOI/status: ${{ steps.publish.outputs.doi }}" >> "$GITHUB_STEP_SUMMARY"
