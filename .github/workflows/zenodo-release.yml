@@ -74,7 +74,7 @@ jobs:
             exit 0
           fi
 
-          RESPONSE=$(curl -fsSL "https://zenodo.org/api/records/${RECORD_ID}" || true)
+          RESPONSE=$(curl --retry 3 --retry-all-errors --connect-timeout 20 --max-time 60 -fsSL "https://zenodo.org/api/records/${RECORD_ID}" || true)
           if [ -z "$RESPONSE" ]; then
             echo "::error::Zenodo record not found or API unavailable for DOI: $DOI"
             echo "status=not_found" >> "$GITHUB_OUTPUT"

@@ -25,6 +25,19 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Install LaTeX toolchain
+        shell: bash
+        run: |
+          set -euo pipefail
+          sudo apt-get update
+          sudo apt-get install -y latexmk texlive-latex-base texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended biber
+
+      - name: Validate monograph build
+        shell: bash
+        run: |
+          set -euo pipefail
+          latexmk -pdf -interaction=nonstopmode -file-line-error main.tex
+
       - name: Assemble monograph package
         shell: bash
         run: |
@@ -87,5 +100,5 @@ jobs:
       - name: Upload monograph package artifact
         uses: actions/upload-artifact@v4
         with:
-          name: fmp-monograph-package
+          name: fmp-monograph-package-${{ github.run_id }}
           path: build/monograph-package
