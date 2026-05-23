@@ -1,0 +1,37 @@
+{
+  "title": "Fractal Metascience Paradigm Monograph: NULLO, PLT, UCOMM and Terra Codex Foundations",
+  "upload_type": "publication",
+  "publication_type": "book",
+  "description": "LaTeX monograph package for the Fractal Metascience Paradigm ecosystem, including NULLO, Post Lingua Trace, UCOMM and Terra Codex foundations. This repository-level Zenodo metadata file is maintained to support reproducible release publication from GitHub Actions.",
+  "creators": [
+    {
+      "name": "Abdukarimov, Abdurashid A.",
+      "orcid": "0009-0000-6394-4912"
+    }
+  ],
+  "license": "cc-by-4.0",
+  "access_right": "open",
+  "keywords": [
+    "Fractal Metascience Paradigm",
+    "FMP",
+    "NULLO",
+    "Post Lingua Trace",
+    "PLT",
+    "UCOMM",
+    "Terra Codex",
+    "human-AI symbiosis",
+    "recursive epistemology"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "10.5281/zenodo.17632583",
+      "relation": "isPartOf",
+      "scheme": "doi"
+    },
+    {
+      "identifier": "https://github.com/Secret-Uzbek/FMP-monograph",
+      "relation": "isSupplementTo",
+      "scheme": "url"
+    }
+  ]
+}

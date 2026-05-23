@@ -1,127 +1,189 @@
-name: Zenodo DOI Registration
+name: Zenodo DOI Sync
 
 on:
-  release:
-    types: [published]
   workflow_dispatch:
+    inputs:
+      expected_doi:
+        description: "Existing DOI to verify, for example 10.5281/zenodo.20116240"
+        required: false
+        default: ""
+      build_pdf:
+        description: "Build PDF from TeX source"
+        required: true
+        default: "true"
+        type: choice
+        options:
+          - "true"
+          - "false"
+
+permissions:
+  contents: read
 
 concurrency:
-  group: zenodo-${{ github.repository }}-${{ github.event.release.tag_name || github.run_id }}
+  group: zenodo-doi-sync-${{ github.repository }}-${{ github.run_id }}
   cancel-in-progress: false
 
 jobs:
-  register-doi:
+  verify-and-build:
+    name: Verify DOI metadata and optionally build PDF
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
 
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: Wait for Zenodo webhook
-        if: ${{ github.event_name == 'release' }}
-        run: sleep 90
-
-      - name: Poll Zenodo for DOI
-        id: zenodo
+      - name: Validate repository metadata
         shell: bash
         run: |
           set -euo pipefail
-          REPO_URL="https://github.com/${{ github.repository }}"
-          echo "Searching Zenodo for: $REPO_URL"
 
-          for attempt in 1 2 3 4 5; do
-            echo "Attempt $attempt..."
-            RESPONSE=$(curl -fsSL "https://zenodo.org/api/records?q=related_identifier:$REPO_URL&sort=mostrecent&size=1" || echo "")
-            DOI=$(printf "%s" "$RESPONSE" | python3 - <<'PY'
-import json
-import sys
+          if [ -f ".zenodo.json" ]; then
+            python3 -m json.tool .zenodo.json > /dev/null
+            echo ".zenodo.json is valid JSON"
+          else
+            echo "::warning::.zenodo.json is not present. DOI sync can continue, but repository metadata should be added."
+          fi
 
-payload = sys.stdin.read().strip()
-if not payload:
-    raise SystemExit(0)
+          if [ -f "CITATION.cff" ]; then
+            echo "CITATION.cff present"
+          else
+            echo "::warning::CITATION.cff is not present."
+          fi
 
-try:
-    data = json.loads(payload)
-except Exception:
-    raise SystemExit(0)
+      - name: Verify existing DOI on Zenodo
+        id: doi
+        shell: bash
+        run: |
+          set -euo pipefail
+          DOI="${{ github.event.inputs.expected_doi }}"
 
-hits = data.get("hits", {}).get("hits", [])
-if hits:
-    doi = hits[0].get("doi") or hits[0].get("metadata", {}).get("doi", "")
-    if doi:
-        print(doi)
-PY
-)
+          if [ -z "$DOI" ]; then
+            echo "No expected DOI supplied. Skipping DOI API check."
+            echo "status=skipped" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
 
-            if [ -n "$DOI" ]; then
-              echo "doi=$DOI" >> "$GITHUB_OUTPUT"
-              echo "Found DOI: $DOI"
-              exit 0
+          NORMALIZED=$(printf '%s' "$DOI" | sed 's#https://doi.org/##I' | tr '[:upper:]' '[:lower:]')
+          RECORD_ID=$(printf '%s' "$NORMALIZED" | awk -F. '{print $NF}')
+
+          if ! printf '%s' "$NORMALIZED" | grep -Eq '^10\.5281/zenodo\.[0-9]+$'; then
+            echo "::warning::Expected DOI does not look like a Zenodo DOI: $DOI"
+            echo "status=unverified_format" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          RESPONSE=$(curl -fsSL "https://zenodo.org/api/records/${RECORD_ID}" || true)
+          if [ -z "$RESPONSE" ]; then
+            echo "::error::Zenodo record not found or API unavailable for DOI: $DOI"
+            echo "status=not_found" >> "$GITHUB_OUTPUT"
+            exit 1
+          fi
+
+          FOUND_DOI=$(printf '%s' "$RESPONSE" | python3 -c "import json,sys; print((json.load(sys.stdin).get('doi') or '').lower())")
+          if [ "$FOUND_DOI" != "$NORMALIZED" ]; then
+            echo "::error::Zenodo returned DOI '$FOUND_DOI', expected '$NORMALIZED'"
+            echo "status=mismatch" >> "$GITHUB_OUTPUT"
+            exit 1
+          fi
+
+          TITLE=$(printf '%s' "$RESPONSE" | python3 -c "import json,sys; print(json.load(sys.stdin).get('metadata',{}).get('title',''))")
+          echo "Verified DOI: $FOUND_DOI"
+          echo "Title: $TITLE"
+          echo "status=verified" >> "$GITHUB_OUTPUT"
+          echo "found_doi=$FOUND_DOI" >> "$GITHUB_OUTPUT"
+          echo "title=$TITLE" >> "$GITHUB_OUTPUT"
+
+      - name: Install TeX build tools
+        if: github.event.inputs.build_pdf == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends \
+            texlive-xetex \
+            texlive-latex-extra \
+            texlive-science \
+            texlive-bibtex-extra \
+            texlive-lang-cyrillic \
+            biber \
+            fonts-dejavu \
+            zip
+
+      - name: Find TeX entry point
+        if: github.event.inputs.build_pdf == 'true'
+        id: tex
+        shell: bash
+        run: |
+          set -euo pipefail
+          MAIN=""
+          for candidate in fractal_metascience_main.tex main.tex monograph.tex nullo_ontological_zero_point.tex nullo_fmp.tex nullo.tex fmp.tex; do
+            if [ -f "$candidate" ]; then
+              MAIN="$candidate"
+              break
             fi
-
-            echo "DOI not found yet, waiting 60s..."
-            sleep 60
           done
 
-          echo "Zenodo DOI not found after polling window." >> "$GITHUB_STEP_SUMMARY"
+          if [ -z "$MAIN" ]; then
+            MAIN=$(find . -maxdepth 3 -name "*.tex" ! -path "./.github/*" | sort | head -n 1 || true)
+          fi
 
-      - name: Update CITATION.cff
-        if: steps.zenodo.outputs.doi != ''
+          if [ -z "$MAIN" ]; then
+            echo "::warning::No TeX source found. Skipping PDF build."
+            echo "main=" >> "$GITHUB_OUTPUT"
+            echo "base=" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          echo "main=$MAIN" >> "$GITHUB_OUTPUT"
+          echo "base=${MAIN%.tex}" >> "$GITHUB_OUTPUT"
+          echo "Using TeX entry point: $MAIN"
+
+      - name: Build PDF
+        if: github.event.inputs.build_pdf == 'true' && steps.tex.outputs.main != ''
+        id: pdf
         shell: bash
         run: |
           set -euo pipefail
-          DOI="${{ steps.zenodo.outputs.doi }}"
-          VERSION="${{ github.event.release.tag_name || github.ref_name }}"
-          DATE=$(date +%Y-%m-%d)
+          MAIN="${{ steps.tex.outputs.main }}"
+          BASE="${{ steps.tex.outputs.base }}"
 
-          python3 - <<'PY' "$DOI" "$VERSION" "$DATE" "${{ github.repository }}"
-import pathlib
-import re
-import sys
+          xelatex -interaction=nonstopmode -halt-on-error "$MAIN"
+          if [ -f "${BASE}.bcf" ]; then
+            biber "$BASE"
+          fi
+          xelatex -interaction=nonstopmode -halt-on-error "$MAIN"
+          xelatex -interaction=nonstopmode -halt-on-error "$MAIN"
 
-doi, version, date, repo = sys.argv[1:]
-path = pathlib.Path("CITATION.cff")
+          PDF="${BASE}.pdf"
+          if [ ! -f "$PDF" ]; then
+            PDF=$(find . -maxdepth 2 -name "*.pdf" | sort | head -n 1 || true)
+          fi
 
-if path.exists():
-    content = path.read_text(encoding="utf-8")
-else:
-    content = f'''cff-version: 1.2.0
-message: "If you use this software, please cite it as below."
-type: software
-title: "{repo.split('/')[-1]}"
-repository-code: "https://github.com/{repo}"
-url: "https://github.com/{repo}"
-'''
+          if [ -z "$PDF" ] || [ ! -f "$PDF" ]; then
+            echo "::error::PDF build finished but no PDF file was found."
+            exit 1
+          fi
 
-updates = {
-    "doi": doi,
-    "version": version,
-    "date-released": date,
-}
+          echo "pdf=${PDF#./}" >> "$GITHUB_OUTPUT"
+          echo "Built PDF: ${PDF#./}"
 
-for key, value in updates.items():
-    pattern = rf"^(#\s*)?{re.escape(key)}:.*$"
-    if re.search(pattern, content, flags=re.MULTILINE):
-        content = re.sub(pattern, f"{key}: {value}", content, flags=re.MULTILINE)
-    else:
-        if not content.endswith("\\n"):
-            content += "\\n"
-        content += f"{key}: {value}\\n"
+      - name: Upload built PDF as workflow artifact
+        if: github.event.inputs.build_pdf == 'true' && steps.pdf.outputs.pdf != ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: built-pdf
+          path: ${{ steps.pdf.outputs.pdf }}
 
-path.write_text(content, encoding="utf-8")
-PY
-
-      - name: Commit CITATION.cff
-        if: steps.zenodo.outputs.doi != ''
+      - name: Summary
         shell: bash
         run: |
-          set -euo pipefail
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add CITATION.cff
-          git diff --staged --quiet || git commit -m "chore: update CITATION.cff with DOI ${{ steps.zenodo.outputs.doi }}"
-          git push
+          echo "## Zenodo DOI Sync" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Expected DOI: ${{ github.event.inputs.expected_doi || 'not supplied' }}" >> "$GITHUB_STEP_SUMMARY"
+          echo "- DOI status: ${{ steps.doi.outputs.status || 'not checked' }}" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Found DOI: ${{ steps.doi.outputs.found_doi || 'n/a' }}" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Title: ${{ steps.doi.outputs.title || 'n/a' }}" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Built PDF: ${{ steps.pdf.outputs.pdf || 'not built' }}" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "This workflow does not create a new Zenodo deposition. It verifies/synchronizes an existing DOI and builds the local source package." >> "$GITHUB_STEP_SUMMARY"
