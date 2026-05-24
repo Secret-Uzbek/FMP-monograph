@@ -98,7 +98,7 @@ jobs:
           EOF
 
       - name: Upload monograph package artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: fmp-monograph-package-${{ github.run_id }}
           path: build/monograph-package
