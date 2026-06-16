@@ -1,3 +1,9 @@
+> **ARCHIVAL AI CHAT LOG** — This file is a raw export of an AI conversation session.
+> Statistical figures, Cohen's d values, p-values, meta-analysis claims, and similar
+> quantitative statements within are illustrative examples generated during the conversation,
+> NOT results of completed empirical studies. For validated FMP research see:
+> https://doi.org/10.5281/zenodo.18155672
+
 The uploaded documents together form a cohesive publication package for “The Fractal Metascience Paradigm (FMP)” — a theoretical and applied framework proposing a fractal, recursive model of knowledge and science itself. Here’s a concise synthesis of what each file contains and how they interrelate:
 
 🧠 1. Core Paper — “The Fractal Metascience Paradigm” (FMP.pdf)
