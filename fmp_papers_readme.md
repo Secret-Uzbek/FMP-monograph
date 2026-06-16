@@ -1,6 +1,6 @@
 # Fractal Metascience Paradigm: Publication Package
 
-## рџ“¦ Package Contents
+## 📦 Package Contents
 
 This package contains two interconnected academic papers ready for journal submission:
 
@@ -32,7 +32,7 @@ This package contains two interconnected academic papers ready for journal submi
 
 ---
 
-## рџљЂ Quick Start: arXiv Submission
+## 🚀 Quick Start: arXiv Submission
 
 ### For Paper 1 (Theory):
 

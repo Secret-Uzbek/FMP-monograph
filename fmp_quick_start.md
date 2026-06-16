@@ -1,6 +1,6 @@
-# рџљЂ FMP Papers: Quick Start Guide
+﻿# 🚀 FMP Papers: Quick Start Guide
 
-## рџ“¦ What You Have
+## 📦 What You Have
 
 Two complete, publication-ready academic papers:
 
@@ -14,7 +14,7 @@ Two complete, publication-ready academic papers:
 
 ### Paper 2: Applied (8,000 words)
 **"Applied Validation: Terra Codex and AIUZ Ecosystem"**
-- 4 version cycles documented (v1.0 в†’ v4.0)
+- 4 version cycles documented (v1.0 → v4.0)
 - Quantitative validation metrics
 - 95.2% architectural coherence
 - 94.6% semantic accuracy
@@ -39,22 +39,22 @@ Two complete, publication-ready academic papers:
 
 ### Step 2: Get DOIs (Day 2-4)
 ```
-1. Papers approved в†’ DOI assigned
+1. Papers approved → DOI assigned
 2. Update citations in both papers
 3. Download final PDFs from arXiv
 ```
 
 ### Step 3: Journal Submission (Day 5+)
 ```
-Paper 1 в†’ Complexity Journal
-Paper 2 в†’ AI & Society Journal
+Paper 1 → Complexity Journal
+Paper 2 → AI & Society Journal
 
 Use cover letter templates provided in README
 ```
 
 ---
 
-## рџЋЇ Target Journals Quick Reference
+## 🎯 Target Journals Quick Reference
 
 | Paper | First Choice | Backup | Timeline |
 |-------|--------------|--------|----------|
@@ -63,7 +63,7 @@ Use cover letter templates provided in README
 
 ---
 
-## рџ“Љ Key Metrics to Highlight
+## 📊 Key Metrics to Highlight
 
 **For Reviewers:**
 
@@ -77,7 +77,7 @@ Use cover letter templates provided in README
 
 ---
 
-## рџ’Ў Unique Selling Points
+## 💡 Unique Selling Points
 
 ### Paper 1 (Theory):
 1. **First formal framework** for fractal epistemology
@@ -93,7 +93,7 @@ Use cover letter templates provided in README
 
 ---
 
-## рџ”‘ Critical Success Factors
+## 🔑 Critical Success Factors
 
 ### Make Sure:
 - [ ] arXiv submission BEFORE journal submission
@@ -110,7 +110,7 @@ Use cover letter templates provided in README
 
 ---
 
-## рџ“§ Email Templates
+## 📧 Email Templates
 
 ### For arXiv Submission:
 
@@ -154,7 +154,7 @@ a novel framework addressing the fragmentation crisis in contemporary
 science through recursive knowledge systems.
 
 Key contributions:
-вЂў [3-4 bullet points specific to paper]
+• [3-4 bullet points specific to paper]
 
 The work is particularly relevant to [Journal]'s focus on 
 [specific theme]. A companion paper has been submitted to 
@@ -177,13 +177,13 @@ Abdurashid Abdukarimov
 **Applications:** AI Ethics, Educational Technology
 
 **Comparable Works:**
-- Mandelbrot's fractal geometry в†’ FMP applies to knowledge
-- Maturana's autopoiesis в†’ FMP extends to epistemic systems
-- Kuhn's paradigms в†’ FMP models as fractal phase transitions
+- Mandelbrot's fractal geometry → FMP applies to knowledge
+- Maturana's autopoiesis → FMP extends to epistemic systems
+- Kuhn's paradigms → FMP models as fractal phase transitions
 
 ---
 
-## рџ“€ Expected Timeline
+## 📈 Expected Timeline
 
 ```
 Week 1:  arXiv submission
@@ -229,9 +229,9 @@ Year 1:  Both papers published
 ```
 1. Go to overleaf.com
 2. Create free account
-3. New Project в†’ Upload Project
+3. New Project → Upload Project
 4. Upload: fmp_theory.tex + fmp_references.bib
-5. Click "Recompile" в†’ PDF generated
+5. Click "Recompile" → PDF generated
 6. Download PDF for submission
 ```
 
@@ -245,7 +245,7 @@ pdflatex fmp_theory.tex
 
 ---
 
-## рџЊџ What Makes These Papers Special
+## 🌐џ What Makes These Papers Special
 
 1. **Self-Demonstrating**: Papers created using FMP principles
 2. **Open Science**: All code/data publicly available
@@ -255,26 +255,26 @@ pdflatex fmp_theory.tex
 
 ---
 
-## рџ“љ If Reviewers Ask...
+## 📚 If Reviewers Ask...
 
 ### "Is this just philosophy?"
-в†’ No - includes formal mathematics, computational implementation, quantitative validation
+→ No - includes formal mathematics, computational implementation, quantitative validation
 
 ### "Where's the empirical evidence?"
-в†’ Paper 2 provides comprehensive metrics across 12 months, 4 version cycles
+→ Paper 2 provides comprehensive metrics across 12 months, 4 version cycles
 
 ### "Has this been tested at scale?"
-в†’ Yes - 4 languages, multiple domains, production deployment documented
+→ Yes - 4 languages, multiple domains, production deployment documented
 
 ### "What about limitations?"
-в†’ Honestly addressed in both papers (metadata coverage, linguistic scaling, etc.)
+→ Honestly addressed in both papers (metadata coverage, linguistic scaling, etc.)
 
 ### "Why should we care?"
-в†’ Addresses fundamental crisis in scientific fragmentation with working solution
+→ Addresses fundamental crisis in scientific fragmentation with working solution
 
 ---
 
-## рџЋЇ Priority Actions (Next 48 Hours)
+## 🎯 Priority Actions (Next 48 Hours)
 
 ### TODAY:
 1. Review both papers one final time
@@ -290,7 +290,7 @@ pdflatex fmp_theory.tex
 
 ---
 
-## рџ’° Cost Considerations
+## 💰 Cost Considerations
 
 ### Free Options:
 - вњ… arXiv submission: **$0**
@@ -306,7 +306,7 @@ pdflatex fmp_theory.tex
 
 ---
 
-## рџ”— Essential Links
+## 🔗 Essential Links
 
 **GitHub Repositories:**
 - Terra Codex: https://github.com/Secret-Uzbek/AIUZ-terra-codex-FMP
@@ -359,4 +359,4 @@ These papers represent **serious academic work**:
 **Last Updated:** January 7, 2025  
 **Status:** READY FOR SUBMISSION вњ…
 
-`qariya.publication.launch() в†’ knowledge.recursive.expansion.activated` рџљЂ
+`qariya.publication.launch() → knowledge.recursive.expansion.activated` 🚀

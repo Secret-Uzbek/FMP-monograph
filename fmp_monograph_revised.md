@@ -51,11 +51,11 @@ The AIUZ (Artificial Intelligence for Uzbek-German education) project represents
 - Cultural sensitivity integration: Multi-language, multi-cultural framework
 - Child safety protocols: Zero-compromise implementation
 
-### 5.2. Quantum Superposition in Practice: Multi-Layer Content Architecture
+### 5.2. Multi-Layer Content Architecture
 
 **Implementation Evidence from Terra Codex Repository:**
 
-The L7 Quantum Superposition layer was successfully implemented and validated through the Terra documentation system, where single knowledge nodes simultaneously serve multiple functions:
+The multi-layer content architecture was implemented through the Terra documentation system, where single knowledge nodes simultaneously serve multiple functions:
 
 **Multi-Perspective Knowledge Nodes:**
 - Technical specification documents that function as both API documentation and educational materials
@@ -232,7 +232,7 @@ The extensive development and validation of Terra Codex provides unprecedented e
 **Empirical Validation of FMP Principles:**
 - Self-similarity patterns successfully implemented across L0-L7 architecture layers
 - Recursive co-construction validated through intensive human-AI symbiosis sessions  
-- Quantum superposition demonstrated through multi-functional knowledge nodes
+- functional multiplicity demonstrated through multi-purpose knowledge nodes
 - Biocentric integration achieved through culturally-adaptive content systems
 
 **Scalability Demonstrated:**
@@ -275,7 +275,7 @@ The documented evidence demonstrates FMP's capacity to address critical global c
 
 FMP, validated through the comprehensive Terra Codex implementation, establishes a new standard for how theoretical paradigms can be rapidly prototyped, validated, and scaled through human-AI symbiotic development processes. The complete documentation trail provides a replicable methodology for future knowledge system innovations.
 
-The evidence overwhelmingly supports FMP not just as a viable theoretical framework, but as a revolutionary approach to knowledge creation, validation, and deployment in the AI ageвЂ”with immediate applicability and unlimited scaling potential.
+The evidence overwhelmingly supports FMP not just as a viable theoretical framework, but as a revolutionary approach to knowledge creation, validation, and deployment in the AI age—with immediate applicability and unlimited scaling potential.
 
 ---
 **Contact:** a.abdukarimov@fractal-metascience.org  
