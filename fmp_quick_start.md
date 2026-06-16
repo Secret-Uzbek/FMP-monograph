@@ -1,4 +1,4 @@
-﻿# 🚀 FMP Papers: Quick Start Guide
+# 🚀 FMP Papers: Quick Start Guide
 
 ## 📦 What You Have
 

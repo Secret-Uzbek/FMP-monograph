@@ -1,4 +1,4 @@
-﻿# 📝 DOCUMENTATION STANDARD
+# 📝 DOCUMENTATION STANDARD
 
 **Terra Ecosystem Documentation Guidelines**
 

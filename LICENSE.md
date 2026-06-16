@@ -1,4 +1,4 @@
-﻿Г°ВџВ“Вњ TERRA PUBLIC LICENSE v1.0
+Г°ВџВ“Вњ TERRA PUBLIC LICENSE v1.0
 License for Ethically-Oriented Educational Technologies
 AUTHOR: Abdurashid Abdukarimov
 DATE CREATED: July 16, 2025
