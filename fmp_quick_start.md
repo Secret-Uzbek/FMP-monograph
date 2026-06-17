@@ -16,8 +16,8 @@ Two complete, publication-ready academic papers:
 **"Applied Validation: Terra Codex and AIUZ Ecosystem"**
 - 4 version cycles documented (v1.0 → v4.0)
 - Quantitative validation metrics
-- 95.2% architectural coherence
-- 94.6% semantic accuracy
+- 95.2% [Illustrative, not empirically validated] architectural coherence
+- 94.6% [Illustrative, not empirically validated] semantic accuracy
 - Ready for: AI & Society, Futures, EdTech journals
 
 ### Supporting Files:
@@ -70,7 +70,7 @@ Use cover letter templates provided in README
 вњ… **12 months** of documented development  
 вњ… **1,847** Git commits tracked  
 вњ… **120,000+** tokens processed in co-creation  
-вњ… **95.2%** production readiness  
+вњ… **95.2% [Illustrative, not empirically validated]** production readiness  
 вњ… **100%** ethical compliance  
 вњ… **0** critical failures  
 вњ… **4** languages validated  
