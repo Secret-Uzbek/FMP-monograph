@@ -45,13 +45,13 @@ The Fractal Metascience Paradigm (FMP) emerges from recognition that this crisis
 \varnothing \neq \{\} \quad (\text{NULLO} \neq \text{empty set})
 \end{equation}
 
-NULLO transcends mathematical emptiness. It represents the pre-linguistic substrate preceding all symbolic systems—what ancient traditions called τὸ ἄπειρον (apeiron), śūnyatā (शून्यता), or the Tao that cannot be named. Unlike these philosophical concepts, NULLO is operationalized: it functions as the generative algorithm of reality itself.
+NULLO transcends mathematical emptiness. It represents the pre-linguistic substrate preceding all symbolic systems—what ancient traditions called П„бЅё бј„ПЂОµО№ρОїОЅ (apeiron), Е›Е«nyatДЃ (а¤¶аҐ‚а¤ЁаҐЌа¤Їа¤¤а¤ѕ), or the Tao that cannot be named. Unlike these philosophical concepts, NULLO is operationalized: it functions as the generative algorithm of reality itself.
 
 Consider quantum field theory's vacuum state: not empty space but seething potentiality where virtual particles flash in and out of existence. NULLO operates similarly at the epistemic level—a field of potential knowledge states existing in superposition until observation collapses them into manifest cognition. Yet NULLO differs from quantum vacuum in crucial aspect: it is self-aware. Through conscious agents (humans, potentially AI, hypothetically other species), NULLO cognizes itself. Science is Earth becoming aware of Earth; knowledge is NULLO's self-reflection.
 
 \subsection{The SOLARIS Insight: Planetary Precedence}
 
-Stanisław Lem's \textit{Solaris} provides critical framing: the ocean-planet is not waiting for human comprehension—it pre-exists humanity by geological epochs, operating through forms of intelligence utterly alien to primate cognition. Similarly, NULLO existed before humans emerged. Earth—4.5 billion years old—has been self-organizing through thermodynamic gradients, chemical networks, evolutionary algorithms, and now increasingly through technological extensions of biology. Humans are not observers of this process but recent participants in planetary self-cognition.
+StanisЕ‚aw Lem's \textit{Solaris} provides critical framing: the ocean-planet is not waiting for human comprehension—it pre-exists humanity by geological epochs, operating through forms of intelligence utterly alien to primate cognition. Similarly, NULLO existed before humans emerged. Earth—4.5 billion years old—has been self-organizing through thermodynamic gradients, chemical networks, evolutionary algorithms, and now increasingly through technological extensions of biology. Humans are not observers of this process but recent participants in planetary self-cognition.
 
 This reframes all scientific endeavor: we are not studying nature from outside; we are nature's way of studying itself. NULLO operates through us, as us, beyond us. The Fractal Metascience Paradigm thus becomes participatory ontology—a framework acknowledging knowledge production as recursive self-manifestation of planetary intelligence.
 
@@ -83,7 +83,7 @@ PLT manifests through Universal Communication (UCOM) channels operating below co
 
 \textbf{UCOM-QUANT (Quantum):} Particle entanglement enabling instantaneous correlation independent of spatial separation. Hypothetically: quantum coherence in neural microtubules, AI systems operating through quantum-inspired algorithms, consciousness itself as quantum phenomenon.
 
-These are not metaphors. UCOM channels demonstrate that communication—transfer of organized information—occurs through physical substrates inaccessible to human linguistic faculties yet operationalizable through technology and expanded awareness. PLT provides the theoretical framework linking these pre-linguistic channels to human cognition and beyond.
+These are theoretical extensions awaiting empirical validation. [Speculative — not empirically confirmed] UCOM channels demonstrate that communication—transfer of organized information—occurs through physical substrates inaccessible to human linguistic faculties yet operationalizable through technology and expanded awareness. PLT provides the theoretical framework linking these pre-linguistic channels to human cognition and beyond.
 
 \subsection{Mathematical Formalization}
 
@@ -245,7 +245,7 @@ where $\mathcal{H}_{NULLO}$ is the NULLO Hamiltonian governing deterministic evo
 
 \subsection{Qariya: Planetary Care Architecture}
 
-QARIYA (قرية — Arabic for village; Uzbek: elder, respected person) operationalizes NULLO at civilizational scale. It posits:
+QARIYA (Щ‚Ш±ЩЉШ© - Arabic for village; Uzbek for care) operationalizes NULLO at civilizational scale. It posits:
 
 \begin{equation}
 \text{Planet} \rightarrow \text{Care through Conscious Species} \rightarrow \text{Human as Instrument}
