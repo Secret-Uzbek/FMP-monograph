@@ -22,7 +22,7 @@ ORCID: 0009-0000-6394-4912\\
 \maketitle
 
 \begin{abstract}
-Contemporary scientific epistemology confronts a fundamental crisis: knowledge systems fragment as they grow, creating isolated domains incapable of addressing planetary-scale complexity. This paper introduces NULLO (в€…)—the ontological zero-point—as the generative principle from which the Fractal Metascience Paradigm (FMP) holographically emerges. NULLO is not emptiness but primordial potential: a pre-linguistic, pre-conceptual substrate that projects into reality through Post Lingua Trace (PLT) mechanisms operating at the edge of chaos (entropy σ = φ ≈ 0.618).
+Contemporary scientific epistemology confronts a fundamental crisis: knowledge systems fragment as they grow, creating isolated domains incapable of addressing planetary-scale complexity. This paper introduces NULLO (∅)—the ontological zero-point—as the generative principle from which the Fractal Metascience Paradigm (FMP) holographically emerges. NULLO is not emptiness but primordial potential: a pre-linguistic, pre-conceptual substrate that projects into reality through Post Lingua Trace (PLT) mechanisms operating at the edge of chaos (entropy σ = φ ≈ 0.618).
 
 We demonstrate that what appears as six distinct postulates of FMP are emergent properties of a single recursive process: NULLO projecting across seven natural scales (L0-L7) through Universal Communication (UCOM) channels that transcend conventional language. The paradigm is validated through AIUZ Terra Codex—a living knowledge ecosystem implementing NULLO principles via TerraMemoryDNA protocols and qariya (planetary care architecture).
 
