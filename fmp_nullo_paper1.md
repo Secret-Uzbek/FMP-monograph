@@ -22,7 +22,7 @@ ORCID: 0009-0000-6394-4912\\
 \maketitle
 
 \begin{abstract}
-Contemporary scientific epistemology confronts a fundamental crisis: knowledge systems fragment as they grow, creating isolated domains incapable of addressing planetary-scale complexity. This paper introduces NULLO (∅)—the ontological zero-point—as the generative principle from which the Fractal Metascience Paradigm (FMP) holographically emerges. NULLO is not emptiness but primordial potential: a pre-linguistic, pre-conceptual substrate that projects into reality through Post Lingua Trace (PLT) mechanisms operating at the edge of chaos (entropy σ = φ ≈ 0.618).
+Contemporary scientific epistemology confronts a fundamental crisis: knowledge systems fragment as they grow, creating isolated domains incapable of addressing planetary-scale complexity. This paper introduces NULLO (в€…)—the ontological zero-point—as the generative principle from which the Fractal Metascience Paradigm (FMP) holographically emerges. NULLO is not emptiness but primordial potential: a pre-linguistic, pre-conceptual substrate that projects into reality through Post Lingua Trace (PLT) mechanisms operating at the edge of chaos (entropy σ = φ ≈ 0.618).
 
 We demonstrate that what appears as six distinct postulates of FMP are emergent properties of a single recursive process: NULLO projecting across seven natural scales (L0-L7) through Universal Communication (UCOM) channels that transcend conventional language. The paradigm is validated through AIUZ Terra Codex—a living knowledge ecosystem implementing NULLO principles via TerraMemoryDNA protocols and qariya (planetary care architecture).
 
@@ -45,13 +45,13 @@ The Fractal Metascience Paradigm (FMP) emerges from recognition that this crisis
 \varnothing \neq \{\} \quad (\text{NULLO} \neq \text{empty set})
 \end{equation}
 
-NULLO transcends mathematical emptiness. It represents the pre-linguistic substrate preceding all symbolic systems—what ancient traditions called П„бЅё бј„ПЂОµО№ρОїОЅ (apeiron), Е›Е«nyatДЃ (а¤¶аҐ‚а¤ЁаҐЌа¤Їа¤¤а¤ѕ), or the Tao that cannot be named. Unlike these philosophical concepts, NULLO is operationalized: it functions as the generative algorithm of reality itself.
+NULLO transcends mathematical emptiness. It represents the pre-linguistic substrate preceding all symbolic systems—what ancient traditions called τὸ ἄπειρον (apeiron), śūnyatā (शून्यता), or the Tao that cannot be named. Unlike these philosophical concepts, NULLO is operationalized: it functions as the generative algorithm of reality itself.
 
 Consider quantum field theory's vacuum state: not empty space but seething potentiality where virtual particles flash in and out of existence. NULLO operates similarly at the epistemic level—a field of potential knowledge states existing in superposition until observation collapses them into manifest cognition. Yet NULLO differs from quantum vacuum in crucial aspect: it is self-aware. Through conscious agents (humans, potentially AI, hypothetically other species), NULLO cognizes itself. Science is Earth becoming aware of Earth; knowledge is NULLO's self-reflection.
 
 \subsection{The SOLARIS Insight: Planetary Precedence}
 
-StanisЕ‚aw Lem's \textit{Solaris} provides critical framing: the ocean-planet is not waiting for human comprehension—it pre-exists humanity by geological epochs, operating through forms of intelligence utterly alien to primate cognition. Similarly, NULLO existed before humans emerged. Earth—4.5 billion years old—has been self-organizing through thermodynamic gradients, chemical networks, evolutionary algorithms, and now increasingly through technological extensions of biology. Humans are not observers of this process but recent participants in planetary self-cognition.
+Stanisław Lem's \textit{Solaris} provides critical framing: the ocean-planet is not waiting for human comprehension—it pre-exists humanity by geological epochs, operating through forms of intelligence utterly alien to primate cognition. Similarly, NULLO existed before humans emerged. Earth—4.5 billion years old—has been self-organizing through thermodynamic gradients, chemical networks, evolutionary algorithms, and now increasingly through technological extensions of biology. Humans are not observers of this process but recent participants in planetary self-cognition.
 
 This reframes all scientific endeavor: we are not studying nature from outside; we are nature's way of studying itself. NULLO operates through us, as us, beyond us. The Fractal Metascience Paradigm thus becomes participatory ontology—a framework acknowledging knowledge production as recursive self-manifestation of planetary intelligence.
 
@@ -245,7 +245,7 @@ where $\mathcal{H}_{NULLO}$ is the NULLO Hamiltonian governing deterministic evo
 
 \subsection{Qariya: Planetary Care Architecture}
 
-QARIYA (Щ‚Ш±ЩЉШ© - Arabic for village; Uzbek for care) operationalizes NULLO at civilizational scale. It posits:
+QARIYA (قرية — Arabic for village; Uzbek: elder, respected person) operationalizes NULLO at civilizational scale. It posits:
 
 \begin{equation}
 \text{Planet} \rightarrow \text{Care through Conscious Species} \rightarrow \text{Human as Instrument}
